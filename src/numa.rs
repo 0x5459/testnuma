@@ -31,14 +31,14 @@ pub struct NumaMemory {
     size: usize,
 }
 
-impl Drop for NumaMemory {
-    fn drop(&mut self) {
-        unsafe {
-            numa_free(self.ptr.as_ptr() as *mut c_void, self.size);
-        }
-        println!("dropped");
-    }
-}
+// impl Drop for NumaMemory {
+//     fn drop(&mut self) {
+//         unsafe {
+//             numa_free(self.ptr.as_ptr() as *mut c_void, self.size);
+//         }
+//         println!("dropped");
+//     }
+// }
 
 pub fn allocate_layer(sector_size: usize) -> Memory {
     unsafe {
