@@ -1,4 +1,7 @@
-use std::{env::args, time::Instant};
+use std::{
+    env::args,
+    time::{Duration, Instant},
+};
 
 mod mmap;
 mod numa;
@@ -14,5 +17,6 @@ fn main() {
     } else {
         let _s = numa::allocate_layer(sector_size);
     }
+    std::thread::sleep(Duration::from_secs(5));
     println!("elapsed: {}", now.elapsed().as_millis());
 }
