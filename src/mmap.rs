@@ -1,7 +1,7 @@
 use anyhow::Result;
 use mapr::{MmapMut, MmapOptions};
 
-fn allocate_layer(sector_size: usize) -> Result<MmapMut> {
+pub fn allocate_layer(sector_size: usize) -> Result<MmapMut> {
     match MmapOptions::new()
         .len(sector_size)
         .private()
