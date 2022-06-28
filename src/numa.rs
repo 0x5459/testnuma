@@ -34,8 +34,10 @@ pub fn allocate_layer(sector_size: usize) -> Memory {
     unsafe {
         let ptr = numa_alloc_local(sector_size as c_size_t) as *mut u8;
         if ptr.is_null() {
+            println!("raw, vec");
             Memory::Raw(Vec::with_capacity(sector_size))
         } else {
+            println!("raw, numa");
             Memory::Numa(NumaMemory {
                 ptr: NonNull::new_unchecked(ptr),
                 size: sector_size,
