@@ -9,7 +9,7 @@ mod numa;
 fn main() {
     let arg: usize = args().nth(1).and_then(|x| x.parse().ok()).unwrap_or(1);
 
-    let sector_size = 1024 * 1024 * 1024 * 32;
+    let sector_size = 1024 * 1024 * 1024 * 200;
     let now = Instant::now();
 
     if arg == 1 {
