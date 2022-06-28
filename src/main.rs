@@ -20,8 +20,11 @@ fn main() {
     } else {
         let mut m = numa::allocate_layer(sector_size);
         let s = m.as_mut();
-        unsafe {
-            std::ptr::write_bytes::<u8>(s.as_mut_ptr(), 0, s.len());
+        loop {
+            unsafe {
+                std::ptr::write_bytes::<u8>(s.as_mut_ptr(), 0, s.len());
+            }
+            std::thread::sleep(Duration::from_secs(10));
         }
     };
 
