@@ -36,6 +36,7 @@ impl Drop for NumaMemory {
         unsafe {
             numa_free(self.ptr.as_ptr() as *mut c_void, self.size);
         }
+        println!("dropped");
     }
 }
 
