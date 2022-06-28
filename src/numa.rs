@@ -17,6 +17,15 @@ pub enum Memory {
     Numa(NumaMemory),
 }
 
+impl AsMut<[u8]> for Memory {
+    fn as_mut(&mut self) -> &mut [u8] {
+        match self {
+            Memory::Raw(v) => v.as_mut_slice(),
+            Memory::Numa(m) => unsafe { std::slice::from_raw_parts_mut(m.ptr.as_ptr(), m.size) },
+        }
+    }
+}
+
 pub struct NumaMemory {
     ptr: NonNull<u8>,
     size: usize,
