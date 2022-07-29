@@ -2,6 +2,9 @@ use anyhow::Result;
 use mapr::{MmapMut, MmapOptions};
 
 pub fn allocate_layer(sector_size: usize) -> Result<MmapMut> {
+//    if {
+//        unimplemented!();
+//    }
     match MmapOptions::new()
         .len(sector_size)
         .private()
